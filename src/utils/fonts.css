@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "AvenirRegular";
+  src: url("fonts/AvenirLight.ttf") format("truetype");
+  font-style: normal;
+}
+@font-face {
+  font-family: "AvenirBold";
+  src: url("fonts/AvenirBold.ttf") format("truetype");
+  font-style: normal;
+}
