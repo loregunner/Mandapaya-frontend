@@ -12,7 +12,5 @@ export const userAuthentication =
   };
 
 export const userRegister = (data: IuserPayload) => (): any => {
-  return axiosHttp.post<IuserPayload>(process.env.URL_LOGIN as string, {
-    data,
-  });
+  return axiosHttp.post<IuserPayload>(process.env.URL_LOGIN as string, data);
 };
