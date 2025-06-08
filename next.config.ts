@@ -12,5 +12,9 @@ const nextConfig = {
     unoptimized: true,
   },
   react: { useSuspense: false },
+  env: {
+    REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+    URL_LOGIN: process.env.URL_LOGIN,
+  },
 };
 module.exports = nextConfig;

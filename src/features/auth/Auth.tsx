@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import Image from "next/image";
 
-import bgauth from "../../images/auth/auth-bg.png"
+import bgauth from "../../images/auth/auth-bg.png";
 
 import {
   Container,
@@ -15,6 +15,8 @@ import {
   Tabs,
   TextToggle,
 } from "./Auth.style";
+import { LoginForm } from "@/components/loginForm/LoginForm";
+import { RegisterForm } from "@/components/registerForm/RegisterForm";
 
 const Auth = () => {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
@@ -54,15 +56,7 @@ const Auth = () => {
             </TabButton>
           </Tabs>
 
-          <div>
-            {activeTab === "login" ? (
-              // <LoginForm />
-              <div>Formulario de login</div>
-            ) : (
-              // <RegisterForm />
-              <div>Formulario de registro</div>
-            )}
-          </div>
+          <div>{activeTab === "login" ? <LoginForm /> : <RegisterForm />}</div>
 
           <TextToggle>
             {activeTab === "login" ? (

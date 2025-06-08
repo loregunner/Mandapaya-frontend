@@ -4,6 +4,11 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "AvenirMedium";
+  src: url("fonts/AvenirMedium.ttf") format("truetype");
+  font-style: normal;
+}
+@font-face {
   font-family: "AvenirBold";
   src: url("fonts/AvenirBold.ttf") format("truetype");
   font-style: normal;

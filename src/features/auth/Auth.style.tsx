@@ -11,6 +11,7 @@ export const Container = styled.div`
   grid-auto-rows: unset;
   grid-gap: 16px;
   height: 100vh;
+  overflow: auto;
   scrollbar-width: none;
   font-family: ${AvenirRegular};
   ::-webkit-scrollbar {
@@ -53,12 +54,17 @@ export const LeftSection = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    vertical-align: bottom;
   }
 `;
 
 export const RightSection = styled.div`
   width: 100%;
-
+  grid-column: 1 / 6;
+  margin: 2rem;
+  @media (min-width: 768px) {
+    grid-column: 2 / 7;
+  }
   @media (min-width: 1280px) {
     grid-column: 8 / 12;
     width: 100%;
