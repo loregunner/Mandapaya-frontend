@@ -25,6 +25,7 @@ const Button = ({
 }: IButton) => {
   const buttonColor = {
     primary: primaryColor,
+    error: "red",
     none: "transparent",
   };
 

@@ -3,14 +3,47 @@ import axiosHttp from "@/config/axios";
 import { ILogin, IuserPayload } from "@/utils/interfaces";
 
 export const userAuthentication =
-  ({ email, password }: ILogin) =>
+  ({ t, username, password }: ILogin) =>
   (): any => {
     return axiosHttp.post<ILogin>(process.env.URL_LOGIN as string, {
-      email,
+      t,
+      username,
       password,
     });
   };
 
-export const userRegister = (data: IuserPayload) => (): any => {
-  return axiosHttp.post<IuserPayload>(process.env.URL_LOGIN as string, data);
-};
+export const userRegister =
+  ({
+    t,
+    email,
+    password,
+    name,
+    lastname,
+    phone,
+    address,
+    idnumber,
+    identification_type,
+    person_type,
+    city,
+    state,
+    zipcode,
+    treatment,
+  }: IuserPayload) =>
+  (): any => {
+    return axiosHttp.post<IuserPayload>(process.env.URL_LOGIN as string, {
+      t,
+      email,
+      password,
+      name,
+      lastname,
+      phone,
+      address,
+      idnumber,
+      identification_type,
+      person_type,
+      city,
+      state,
+      zipcode,
+      treatment,
+    });
+  };

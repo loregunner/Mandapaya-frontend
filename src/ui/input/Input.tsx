@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { UseFormRegister } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import {
-  Icon,
   InputCustom,
   InputWrapper,
   Label,
@@ -18,7 +17,7 @@ export interface Iinput {
   registerName: string;
   placeholder: string;
   register: UseFormRegister<any>;
-  errors?: string;
+  errors?: any;
   disabled?: boolean;
   required?: boolean;
   step?: any;
@@ -41,7 +40,6 @@ const Input = ({
   return (
     <InputWrapper>
       <Label>{label}</Label>
-
       <InputCustom
         placeholder={placeholder}
         {...register(registerName)}
@@ -51,13 +49,13 @@ const Input = ({
         disabled={disabled}
         autoComplete="new-password"
         step={step}
+        $error={errors !== undefined}
         required={required ?? false}
       />
-
-      <Icon>
-        {inconsSelect(registerName)}
-      </Icon>
-
+      <i className="icon_input">{inconsSelect(registerName)}</i>
+      {errors !== undefined ? (
+        <div className="error_input">{errors}</div>
+      ) : null}
       {isPassword && (
         <TogglePassword onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}

@@ -40,6 +40,16 @@ export const Container = styled.div`
       margin-top: 15%;
     }
   }
+  .form_modal {
+    padding: 1rem;
+    .container_buttons {
+      display: flex;
+      justify-content: end;
+      span {
+        color: white;
+      }
+    }
+  }
 `;
 
 export const LeftSection = styled.div`
@@ -61,7 +71,7 @@ export const LeftSection = styled.div`
 export const RightSection = styled.div`
   width: 100%;
   grid-column: 1 / 6;
-  margin: 2rem;
+  margin: 1rem;
   @media (min-width: 768px) {
     grid-column: 2 / 7;
   }
