@@ -41,7 +41,7 @@ export const LoginForm = ({ setModalOpen }: ILogin) => {
       .then((resp: any) => {
         setCookie("userid", resp.data.user[0].user_id ?? "", {
           httpOnly: false,
-          secure: true,
+          secure: process.env.NODE_ENV === "production",
           path: "/",
         });
         setTimeout(() => {
