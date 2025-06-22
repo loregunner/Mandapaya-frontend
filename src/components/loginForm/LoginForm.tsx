@@ -12,6 +12,8 @@ import Button from "@/ui/button/Button";
 import { Dispatch, useEffect } from "react";
 import useAnimation from "@/hooks/useAnimation";
 import Animation from "@/ui/animation/Animation";
+import { useAppDispatch } from "@/redux/hooks";
+import { setLogin } from "@/redux/slices/login";
 
 interface ILogin {
   setModalOpen: Dispatch<boolean>;
@@ -25,6 +27,7 @@ export const LoginForm = ({ setModalOpen }: ILogin) => {
     resolver: yupResolver(loginSchema) as any,
   });
   const router = useRouter();
+  const dispatchReducer = useAppDispatch();
   const userId = getCookie("userid") as any;
   const [AnimationOpen, setAnimationOpen, toggleAnimation] =
     useAnimation(false);
@@ -39,6 +42,8 @@ export const LoginForm = ({ setModalOpen }: ILogin) => {
     toggleAnimation();
     response()
       .then((resp: any) => {
+        console.log(resp.data);
+        dispatchReducer(setLogin(resp.data));
         setCookie("userid", resp.data.user[0].user_id ?? "", {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production",

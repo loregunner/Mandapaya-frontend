@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/utils/fonts.css";
 import Loading from "./loading";
 import StyledComponentsRegistry from "@/config/register";
+import ReduxProvider from "@/redux/provider";
 
 export const metadata = {
   title: "Mandapaya",
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: any) {
       </head>
       <body className="layout" translate="no" suppressHydrationWarning={true}>
         <Suspense fallback={<Loading />}>
-          <StyledComponentsRegistry>
-            <div>{children}</div>
-          </StyledComponentsRegistry>
+          <ReduxProvider>
+            <StyledComponentsRegistry>
+              <div>{children}</div>
+            </StyledComponentsRegistry>
+          </ReduxProvider>
         </Suspense>
       </body>
     </html>

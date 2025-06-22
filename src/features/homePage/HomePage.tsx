@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -15,6 +17,7 @@ import {
   FeatureSection,
   FeatureCard,
   ContactSection,
+  ContainerRight,
 } from "./HomePage.style";
 
 import family from "@/images/homepage/family-background.png";
@@ -25,10 +28,26 @@ import { countries, countryImages } from "./HomePage.utils";
 import Button from "@/ui/button/Button";
 import { ContactForm } from "@/components/contactForm/ContactForm";
 import Footer from "@/components/footer/Footer";
+import { Logout } from "@/components/logout/Logout";
+import Popup from "@/ui/popup/Popup";
+import usePopup from "@/hooks/usePopup";
+import { deleteCookie, getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import useAnimation from "@/hooks/useAnimation";
+import Animation from "@/ui/animation/Animation";
+import { useSelector } from "react-redux";
+import { selectLoginState } from "@/redux/slices/login";
 
 export default function Homepage() {
+  const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState("venezuela");
+  const [popupOpen, setPopupOpen, togglePopup] = usePopup(false);
   const [isChanging, setIsChanging] = useState(false);
+  const tokenUser = getCookie("userid") as any;
+   const loginState = useSelector(selectLoginState);
+  const [AnimationOpen, setAnimationOpen, toggleAnimation] =
+    useAnimation(false);
+console.log();
 
   useEffect(() => {
     if (isChanging) {
@@ -90,13 +109,18 @@ export default function Homepage() {
               </div>
             </CountrySelector>
           </div>
-          <ImageInner $isChanging={isChanging}>
-            <Image
-              src={countryImages[selectedCountry]}
-              alt={`Mandapayá en ${selectedCountry}`}
-              className="w-full h-full object-fill rounded-[20px]"
-            />
-          </ImageInner>
+          <ContainerRight>
+            <div className="logout">
+              <Logout setPopupOpen={setPopupOpen} dataUser={loginState.user[0]} />
+            </div>
+            <ImageInner $isChanging={isChanging}>
+              <Image
+                src={countryImages[selectedCountry]}
+                alt={`Mandapayá en ${selectedCountry}`}
+                className="w-full h-full object-fill rounded-[20px]"
+              />
+            </ImageInner>
+          </ContainerRight>
         </Content>
       </BackgroundImage>
       <FeatureSection>
@@ -149,6 +173,26 @@ export default function Homepage() {
       </ContactSection>
 
       <Footer />
+      <Popup
+        title="¿Estás seguro/a de que deseas cerrar sesión?"
+        isActive={popupOpen}
+        handleClose={() => {
+          setPopupOpen(false);
+        }}
+        message={`Tu sesión actual se cerrará y necesitarás volver a iniciar sesión para acceder nuevamente. Asegúrate de haber guardado tu trabajo antes de continuar.`}
+        accept={() => {
+          setPopupOpen(false);
+          setAnimationOpen(true);
+
+          setTimeout(() => {
+            if (tokenUser) deleteCookie("userid");
+            localStorage.removeItem("session_active");
+            router.push("/");
+            setAnimationOpen(false);
+          }, 2000);
+        }}
+      />
+      <Animation isActive={AnimationOpen} />
     </HomepageWrapper>
   );
 }

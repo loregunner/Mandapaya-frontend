@@ -47,3 +47,32 @@ export const userRegister =
       treatment,
     });
   };
+
+export const userEmail =
+  ({ t, username }: any) =>
+  (): any => {
+    return axiosHttp.post<any>(process.env.URL_LOGIN as string, {
+      t,
+      username,
+    });
+  };
+
+export const userToken =
+  ({ t, userid, token }: any) =>
+  (): any => {
+    return axiosHttp.post<any>(process.env.URL_LOGIN as string, {
+      t,
+      userid,
+      token,
+    });
+  };
+
+export const userPassword =
+  ({ t, userid, password }: any) =>
+  (): any => {
+    return axiosHttp.post<any>(process.env.URL_LOGIN as string, {
+      t,
+      userid,
+      password,
+    });
+  };

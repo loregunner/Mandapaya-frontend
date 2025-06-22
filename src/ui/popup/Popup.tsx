@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
 import Image from "next/image";
@@ -13,6 +14,7 @@ interface Props {
   close?: boolean;
   handleClose: () => void;
   accept: () => void;
+  warning?: any;
 }
 
 const Popup = ({
@@ -22,13 +24,14 @@ const Popup = ({
   close,
   handleClose,
   accept,
+  warning
 }: Props) => {
   return (
     <WrapperPopup $isActive={isActive} data-testid="popup_test">
       <div className="container_modal">
         <div className="header_modal">
           <Image
-            src={LibsSVG.check}
+            src={warning ? LibsSVG.error : LibsSVG.check}
             alt="accept"
             className="imgAccept"
             width={30}

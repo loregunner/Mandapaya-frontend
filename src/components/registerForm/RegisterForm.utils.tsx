@@ -28,7 +28,6 @@ export const loginSchema = yup.object().shape({
 
 export const rememberSchema = yup.object().shape({
   email: yup.string().email("Correo inválido").required(requiredField),
-  newpassword: yup.string().min(6, "Mínimo 6 caracteres").required(requiredField),
 });
 
 export const tiposPersona = [
@@ -37,9 +36,11 @@ export const tiposPersona = [
 ];
 
 export const tiposDocumento = [
-  { id: 1, label: "Cédula de ciudadanía" },
-  { id: 2, label: "Cédula de extranjería" },
-  { id: 3, label: "Tarjeta de identidad" },
-  { id: 4, label: "Pasaporte" },
-  { id: 5, label: "Número de Identificación Tributaria" },
+  { id: 1, label: "Pasaporte" },
+  { id: 2, label: "Driver license" },
+  { id: 3, label: "Social security" },
+  { id: 4, label: "Cédula de ciudadanía" },
+  { id: 5, label: "Cédula de extranjería" },
+  { id: 6, label: "NIT" },
+  { id: 8, label: "DNI" },
 ];

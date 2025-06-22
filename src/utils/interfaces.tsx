@@ -20,3 +20,5 @@ export interface IuserPayload {
   zipcode: string;
   treatment: string;
 }
+
+export type alertType = "error" | "exitoso";

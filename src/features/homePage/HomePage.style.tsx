@@ -84,6 +84,14 @@ export const LogoContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
+export const ContainerRight = styled.div`
+  .logout {
+    margin: -2rem -3rem 0 0;
+    float: inline-end;
+  }
+  margin-bottom: 2rem;
+`;
+
 export const Title = styled.h1`
   font-size: 2.5rem;
   font-weight: bold;
@@ -265,4 +273,3 @@ export const ContactSection = styled.section`
     font-size: 44px;
   }
 `;
-
